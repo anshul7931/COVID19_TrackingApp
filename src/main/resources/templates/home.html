@@ -1,0 +1,14 @@
+<h1>Coronavirus Tracker</h1>
+<table style = "{border:1px solid black;}">
+	<tr>
+		<th>State</th>
+		<th>Country</th>
+		<th>Reported Cases</th>
+	</tr>
+	
+	<tr th:each="locationStat : ${locationStats}">
+		<td th:text="${locationStat.state}"></td>
+		<td th:text="${locationStat.country}"></td>
+		<td th:text="${locationStat.latestTotalCases}"></td>
+	</tr>
+</table>

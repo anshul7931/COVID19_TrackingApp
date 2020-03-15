@@ -7,6 +7,16 @@ public class LocationStats {
 	private String country;
 	
 	private int latestTotalCases;
+	
+	private int reportedToday;
+
+	public int getReportedToday() {
+		return reportedToday;
+	}
+
+	public void setReportedToday(int reportedToday) {
+		this.reportedToday = reportedToday;
+	}
 
 	public String getState() {
 		return state;
@@ -32,10 +42,6 @@ public class LocationStats {
 		this.latestTotalCases = latestTotalCases;
 	}
 
-	@Override
-	public String toString() {
-		return "LocationStats [state=" + state + ", country=" + country + ", latestTotalCases=" + latestTotalCases
-				+ "]";
-	}
+	
 
 }

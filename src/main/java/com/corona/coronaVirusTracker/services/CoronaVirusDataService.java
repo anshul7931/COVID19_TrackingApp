@@ -29,7 +29,7 @@ public class CoronaVirusDataService {
 	private List<LocationStats> allStats = new ArrayList<>();
 	
 	@PostConstruct // When construction of this service class is done, just execute this method
-	@Scheduled(cron = "* 30 * * * *")// Run every second for live updates
+	@Scheduled(cron = "* 30 * * * *")// Run every 30 minutes for live updates
 	public void fetchVirusData() throws IOException {
 		List<LocationStats> newStats = new ArrayList<>();// Creating a new list after scheduled time to avoid concurrency issues with single list
 		URL url = new URL(VIRUS_DATA_URL);
@@ -44,7 +44,7 @@ public class CoronaVirusDataService {
 		    locationStat.setState(record.get("Province/State"));
 		    locationStat.setCountry(record.get("Country/Region"));
 		    locationStat.setLatestTotalCases(Integer.parseInt(record.get(record.size() - 1)));//Last column (Latest date)
-		    System.out.println(locationStat);
+		    locationStat.setReportedToday(Integer.parseInt(record.get(record.size() - 1)) - Integer.parseInt(record.get(record.size() - 2)));
 		    newStats.add(locationStat);
 		}
 		this.allStats = newStats;
